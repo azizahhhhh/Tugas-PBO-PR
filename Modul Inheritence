@@ -1,242 +1,248 @@
-class Processor
+namespace TugasPBOPR1
 {
-    public string merk;
-    public string tipe;
-}
 
-class Intel : Processor
-{
-    public Intel()
+    class Processor
     {
-        merk = "Intel";
-    }
-}
-
-class CoreI3 : Intel
-{
-    public CoreI3() : base()
-    {
-        base.tipe = "Core I3";
-    }
-}
-
-class CoreI5 : Intel
-{
-    public CoreI5() : base()
-    {
-        base.tipe = "Core I5";
-    }
-}
-class CoreI7 : Intel
-{
-    public CoreI7() : base()
-    {
-        base.tipe = "Core I7";
-    }
-}
-
-class pAMD : Processor
-{
-    public pAMD()
-    {
-        merk = "AMD";
-    }
-}
-
-class Ryzen : pAMD
-{
-    public Ryzen() : base()
-    {
-        base.tipe = "RYZEN";
-    }
-}
-
-class Athlon : pAMD
-{
-    public Athlon() : base()
-    {
-        base.tipe = "ATHLON";
-    }
-}
-
-class Vga
-{
-    public string merk;
-}
-
-class Nvidia : Vga
-{
-    public Nvidia()
-    {
-        merk = "Nvidia";
-    }
-}
-
-class AMD : Vga
-{
-    public AMD()
-    {
-        merk = "AMD";
-    }
-}
-
-class Laptop
-{
-    public string merk;
-    public string tipe;
-    public Vga vga;
-    public Processor processor;
-    public void LaptopDinyalakan()
-    {
-        System.Console.WriteLine("Laptop " + merk + " " + tipe + " menyala");
-    }
-    public void LaptopDimatikan()
-    {
-        System.Console.WriteLine("Laptop " + merk + " " + tipe + " mati");
-    }
-}
-
-class ASUS : Laptop
-{
-    public ASUS()
-    {
-        merk = "ASUS";
-    }
-}
-
-class ROG : ASUS
-{
-    public ROG() : base()
-    {
-        base.tipe = "ROG";
-    }
-}
-
-class Vivobook : ASUS
-{
-    public Vivobook() : base()
-    {
-        base.tipe = "Vivobook";
-    }
-    public void Ngoding()
-    {
-        System.Console.WriteLine("Ctak Ctak Ctak, error lagi!!!");
-    }
-}
-
-class ACER : Laptop
-{
-    public ACER()
-    {
-        merk = "ACER";
-    }
-}
-
-class Swift : ACER
-{
-    public Swift() : base()
-    {
-        base.tipe = "Swift";
-    }
-}
-
-class Predator : ACER
-{
-    public Predator() : base()
-    {
-        base.tipe = "Predator";
+        public string merk;
+        public string tipe;
     }
 
-    public void BermainGame()
+    class Intel : Processor
     {
-        System.Console.WriteLine("Laptop " + merk + " " + tipe + " sedang memainkan game");
+        public Intel()
+        {
+            merk = "Intel";
+        }
     }
-}
 
-class Lenovo : Laptop
-{
-    public Lenovo()
+    class CoreI3 : Intel
     {
-        merk = "Lenovo";
+        public CoreI3() : base()
+        {
+            base.tipe = "Core I3";
+        }
     }
-}
 
-class IdeaPad : Lenovo
-{
-    public IdeaPad() : base()
+    class CoreI5 : Intel
     {
-        base.tipe = "IdeaPad";
+        public CoreI5() : base()
+        {
+            base.tipe = "Core I5";
+        }
     }
-}
-
-class Legion : Lenovo
-{
-    public Legion() : base()
+    class CoreI7 : Intel
     {
-        base.tipe = "Legion";
+        public CoreI7() : base()
+        {
+            base.tipe = "Core I7";
+        }
     }
-}
 
-class Program
-{
-    public static void Main(string[] args)
+    class pAMD : Processor
     {
-        Laptop laptop1 = new Vivobook();
-        laptop1.vga = new Nvidia();
-        laptop1.processor = new CoreI5();
-
-        Laptop laptop2 = new IdeaPad();
-        laptop2.vga = new AMD();
-        laptop2.processor = new Ryzen();
-
-        Predator predator = new Predator();
-        predator.vga = new AMD();
-        predator.processor = new CoreI7();
-
-        // soal 1
-        laptop2.LaptopDinyalakan();
-        laptop2.LaptopDimatikan();
-        // jawaban
-        // maka akan tampil pesan
-        //      Laptop Lenovo IdeaPad menyala
-        //      Laptop Lenovo IdeaPad mati
-        // karena laptop2 berisi object yang merupakan 
-        // inheritance dari class Laptop dimana class laptop
-        // memiliki fungsi LaptopDinyalakan() dan 
-        // LaptopDimatikan() yang akan menampilkan output 
-        // seperti diatas.
-
-        // soal 2
-        ((Vivobook)laptop1).Ngoding();
-        // jawaban
-        // maka akan tampil
-        //      Ctak Ctak Ctak, error lagi!!
-        // setelah dijalankan method ngoding pada laptop 1, akan mengeluarkan output "Ctak Ctak Ctak, error
-        // lagi!!” dikarenakan di dalam class laptop 1 terdapat void ngoding yang menyebabkan output dari laptop
-        // tersebut dapat dikeluarkan serta tanpa menggunakan Console.Writeline untuk mengeluarkan output tersebut
-
-        // soal 3
-        System.Console.WriteLine("Spesifikasi laptop1=> merk vga: " + laptop1.vga.merk + "; merk processor: " + laptop1.processor.merk + "; tipe processor: " + laptop1.processor.tipe);
-        // jawaban
-        // maka akan tampil
-        //      Spesifikasi laptop1=> merk vga: Nvidia; merk processor: Intel; tipe processor: Core I5
-        // karena pada object di dalam variabel laptop terdapat variabel vga dan processor dan kita bisa
-        // mengakses merk dan tipe dari variabel variabel tersebut 
-
-        // soal 4
-        predator.BermainGame();
-        // jawaban
-        // maka akan tampil
-        //      Laptop ACER Predator sedang memainkan game
-        // karena pada variabel predator bertipe data Predator dan berisi object Predator juga sehingga kita
-        // bisa mengakses fungsi BermainGame() yang hanya ada di dalam class Predator
-
-        // soal 5
-        ACER acer = new Predator();
-        ((Predator)acer).BermainGame();
-        // maka akan error
-        // karena variabel acer bertipe data ACER sedangkan fungsi BermainGame() hanya ada pada class Predator.
-        // Jadi walaupun kita memasukan object Predator kedalam variabel acer maka kita tetap tidak bisa mengakses
-        // fungsi BermainGame()
+        public pAMD()
+        {
+            merk = "AMD";
+        }
     }
+
+    class Ryzen : pAMD
+    {
+        public Ryzen() : base()
+        {
+            base.tipe = "RYZEN";
+        }
+    }
+
+    class Athlon : pAMD
+    {
+        public Athlon() : base()
+        {
+            base.tipe = "ATHLON";
+        }
+    }
+
+    class Vga
+    {
+        public string merk;
+    }
+
+    class Nvidia : Vga
+    {
+        public Nvidia()
+        {
+            merk = "Nvidia";
+        }
+    }
+
+    class AMD : Vga
+    {
+        public AMD()
+        {
+            merk = "AMD";
+        }
+    }
+
+    class Laptop
+    {
+        public string merk;
+        public string tipe;
+        public Vga vga;
+        public Processor processor;
+        public void LaptopDinyalakan()
+        {
+            System.Console.WriteLine("Laptop " + merk + " " + tipe + " menyala");
+        }
+        public void LaptopDimatikan()
+        {
+            System.Console.WriteLine("Laptop " + merk + " " + tipe + " mati");
+        }
+    }
+
+    class ASUS : Laptop
+    {
+        public ASUS()
+        {
+            merk = "ASUS";
+        }
+    }
+
+    class ROG : ASUS
+    {
+        public ROG() : base()
+        {
+            base.tipe = "ROG";
+        }
+    }
+
+    class Vivobook : ASUS
+    {
+        public Vivobook() : base()
+        {
+            base.tipe = "Vivobook";
+        }
+        public void Ngoding()
+        {
+            System.Console.WriteLine("Ctak Ctak Ctak, error lagi!!!");
+        }
+    }
+
+    class ACER : Laptop
+    {
+        public ACER()
+        {
+            merk = "ACER";
+        }
+    }
+
+    class Swift : ACER
+    {
+        public Swift() : base()
+        {
+            base.tipe = "Swift";
+        }
+    }
+
+    class Predator : ACER
+    {
+        public Predator() : base()
+        {
+            base.tipe = "Predator";
+        }
+
+        public void BermainGame()
+        {
+            System.Console.WriteLine("Laptop " + merk + " " + tipe + " sedang memainkan game");
+        }
+    }
+
+    class Lenovo : Laptop
+    {
+        public Lenovo()
+        {
+            merk = "Lenovo";
+        }
+    }
+
+    class IdeaPad : Lenovo
+    {
+        public IdeaPad() : base()
+        {
+            base.tipe = "IdeaPad";
+        }
+    }
+
+    class Legion : Lenovo
+    {
+        public Legion() : base()
+        {
+            base.tipe = "Legion";
+        }
+    }
+
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            Laptop laptop1 = new Vivobook();
+            laptop1.vga = new Nvidia();
+            laptop1.processor = new CoreI5();
+
+            Laptop laptop2 = new IdeaPad();
+            laptop2.vga = new AMD();
+            laptop2.processor = new Ryzen();
+
+            Predator predator = new Predator();
+            predator.vga = new AMD();
+            predator.processor = new CoreI7();
+
+            // soal 1
+            laptop2.LaptopDinyalakan();
+            laptop2.LaptopDimatikan();
+            // jawaban
+            //maka akan tampil pesan
+            //      Laptop Lenovo IdeaPad menyala
+            //      Laptop Lenovo IdeaPad mati
+            // karena laptop2 berisi object yang merupakan
+            // inheritance dari class Laptop dimana class laptop
+            // memiliki fungsi LaptopDinyalakan() dan
+            // LaptopDimatikan() yang akan menampilkan output
+            // seperti diatas.
+
+            // soal 2
+            // laptop1.Ngoding();
+            // jawaban
+            //Maka akan error
+            //Karena pada class diagram variable laptop tidak terdapat method Ngoding() jadi saat kita
+            //mengetikkan laptop1.Ngoding(); akan terjadi error.Agar tidak error sebenarnya kita bisa
+            //menambahkan method Ngoding() ke dalam variable laptop.Atau bisa juga dengan cara mengetikkan
+            //pada class program ((Vivobook) laptop1).Ngoding();
+
+            // soal 3
+            System.Console.WriteLine("Spesifikasi laptop1=> merk vga: " + laptop1.vga.merk + "; merk processor: " + laptop1.processor.merk + "; tipe processor: " + laptop1.processor.tipe);
+            // jawaban
+            //maka akan tampil
+            //     Spesifikasi laptop1 => merk vga: Nvidia; merk processor: Intel; tipe processor: Core I5
+            // karena pada object di dalam variabel laptop terdapat variabel vga dan processor dan kita bisa
+            // mengakses merk dan tipe dari variabel variabel tersebut
+
+            // soal 4
+            predator.BermainGame();
+            // jawaban
+            // maka akan tampil
+            //     Laptop ACER Predator sedang memainkan game
+            //karena pada variabel predator bertipe data Predator dan berisi object Predator juga sehingga kita
+            //bisa mengakses fungsi BermainGame() yang hanya ada di dalam class Predator
+
+            // soal 5
+            ACER acer = new Predator();
+            ((Predator)acer).BermainGame();
+            // jawaban
+            //maka akan error
+            //karena variabel acer bertipe data acer sedangkan fungsi bermaingame() hanya ada pada class predator.
+            // jadi walaupun kita memasukan object predator kedalam variabel acer maka kita tetap tidak bisa mengakses
+            // fungsi bermaingame()
+        }
+    }
+
 }
