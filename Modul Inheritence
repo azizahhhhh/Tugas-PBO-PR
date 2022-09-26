@@ -238,10 +238,11 @@ namespace TugasPBOPR1
             ACER acer = new Predator();
             ((Predator)acer).BermainGame();
             // jawaban
-            //maka akan error
-            //karena variabel acer bertipe data acer sedangkan fungsi bermaingame() hanya ada pada class predator.
-            // jadi walaupun kita memasukan object predator kedalam variabel acer maka kita tetap tidak bisa mengakses
-            // fungsi bermaingame()
+            //maka akan tampil
+            //Laptop ACER Predator sedang memainkan game
+            //karena variabel acer bertipe data acer dan fungsi bermaingame() ada pada class predator dan
+            // class predator ini anak dari class acer jadi saat kita memasukan object predator kedalam
+            // variabel acer maka kita bisa mengakses fungsi BermainGame()
         }
     }
 
